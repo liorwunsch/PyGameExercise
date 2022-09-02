@@ -1,4 +1,4 @@
-# SnakeAI
+# PyGameExercise
 
 Uses PyGame
 
