@@ -138,7 +138,7 @@ class GAME:
         self.screen = pygame.display.set_mode((self.screen_size, self.screen_size))
 
         self.snake = SNAKE(self.screen)
-        self.fruit = FRUIT(self.screen)
+        self.fruit = FRUIT(self.screen); self.fruit_randomize()
         self.game_font = pygame.font.Font('Font/PoetsenOne-Regular.ttf', 25)
 
     def update(self):
@@ -217,30 +217,3 @@ class GAME:
 def game_over():
     pygame.quit()
     sys.exit()
-
-def main():
-    pygame.mixer.pre_init(44100, -16, 2, 512)
-    pygame.init()
-
-    clock = pygame.time.Clock()
-    framerate = 90
-
-    main_game = GAME()
-
-    while True:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                game_over()
-            if event.type == pygame.USEREVENT:
-                main_game.update()
-            if event.type == pygame.KEYDOWN:
-                main_game.snake.change_direction(event.key)
-                if event.key == pygame.K_ESCAPE:
-                    game_over()
-
-        # draw all our elements
-        main_game.screen.fill(main_game.screen_color)
-        main_game.draw_elements()
-
-        pygame.display.update()
-        clock.tick(framerate)
